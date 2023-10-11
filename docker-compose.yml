@@ -1,18 +1,9 @@
 version: '3'
 
 services:
-  tb_mongodb:
-    image: mongo:latest
-    ports:
-      - "27017:27017"
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: tb
-      MONGO_INITDB_ROOT_PASSWORD: tb_password
-    volumes:
-      - tb_mongodb_data:/data/db
 
   tb_cassandra1:
-    image: cassandra:latest
+    image: cassandra:4.1.3
     ports:
       - "9042:9042"
     environment:
@@ -22,7 +13,7 @@ services:
       - tb_cassandra1_data:/var/lib/cassandra
 
   tb_cassandra2:
-    image: cassandra:latest
+    image: cassandra:4.1.3
     environment:
       CASSANDRA_CLUSTER_NAME: tb_CLUSTER
       CASSANDRA_ENDPOINT_SNITCH: GossipingPropertyFileSnitch
@@ -31,7 +22,7 @@ services:
       - tb_cassandra2_data:/var/lib/cassandra
 
   tb_cassandra3:
-    image: cassandra:latest
+    image: cassandra:4.1.3
     environment:
       CASSANDRA_CLUSTER_NAME: tb_CLUSTER
       CASSANDRA_ENDPOINT_SNITCH: GossipingPropertyFileSnitch
