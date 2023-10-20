@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  mongodb:
+    image: mongo:7.0.2
+    container_name: mongodb
+    hostname: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: username
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - mongodb_data:/data/db
+      - ./test.js:/scripts/test.js
+
+volumes:
+  mongodb_data:

@@ -9,6 +9,7 @@ services:
     environment:
       CASSANDRA_CLUSTER_NAME: tb_CLUSTER
       CASSANDRA_ENDPOINT_SNITCH: GossipingPropertyFileSnitch
+      CASSANDRA_SEEDS: "tb_cassandra1,tb_cassandra2"
     volumes:
       - tb_cassandra1_data:/var/lib/cassandra
 
@@ -17,7 +18,7 @@ services:
     environment:
       CASSANDRA_CLUSTER_NAME: tb_CLUSTER
       CASSANDRA_ENDPOINT_SNITCH: GossipingPropertyFileSnitch
-      CASSANDRA_SEEDS: tb_cassandra1
+      CASSANDRA_SEEDS: "tb_cassandra1,tb_cassandra2"
     volumes:
       - tb_cassandra2_data:/var/lib/cassandra
 
@@ -26,12 +27,11 @@ services:
     environment:
       CASSANDRA_CLUSTER_NAME: tb_CLUSTER
       CASSANDRA_ENDPOINT_SNITCH: GossipingPropertyFileSnitch
-      CASSANDRA_SEEDS: tb_cassandra1
+      CASSANDRA_SEEDS: "tb_cassandra1,tb_cassandra2"
     volumes:
       - tb_cassandra3_data:/var/lib/cassandra
 
 volumes:
-  tb_mongodb_data:
   tb_cassandra1_data:
   tb_cassandra2_data:
   tb_cassandra3_data:
