@@ -307,3 +307,75 @@ SELECT * FROM tb_demo1.tb_cfdemo1 WHERE tb_col2 = 'test_quorum_recovery' ALLOW F
 ```
 
 Cette fois, les opérations devraient réussir car deux nœuds (le quorum pour un RF de 3) sont en ligne et fonctionnels. Cela démontre la capacité de Cassandra à se remettre des pannes et à continuer à fonctionner dès que le quorum est rétabli.
+
+## Scripts
+
+### [Java](https://github.com/carlodrift/cours-nosql/tree/main/cassandra/scripts/java)
+
+Installer Java et Maven.
+
+Se placer dans le dossier `cassandra/scripts/java`.
+
+```bash
+mvn compile && mvn exec:java
+```
+
+On peut aussi utiliser son IDE préféré à la place.
+
+### [Python](https://github.com/carlodrift/cours-nosql/tree/main/cassandra/scripts/python)
+
+Installer Python.
+
+Se placer dans le dossier `cassandra/scripts/python`.
+
+```bash
+pip3 install cassandra-driver
+python3 cassandra-script.py
+```
+
+### [JavaScript](https://github.com/carlodrift/cours-nosql/tree/main/cassandra/scripts/javascript)
+
+Installer Node.
+
+Se placer dans le dossier `cassandra/scripts/javascript`.
+
+```bash
+npm install cassandra-driver
+node cassandra-script.js
+```
+
+### [Go](https://github.com/carlodrift/cours-nosql/tree/main/cassandra/scripts/go)
+
+Installer [Go](https://go.dev/).
+
+Se placer dans le dossier `cassandra/scripts/go`.
+
+```bash
+go get github.com/gocql/gocql
+go run cassandra-script.go
+```
+
+## Glossaire
+
+1. **Modèle de données** :
+- **Clé de partition** : Détermine sur quel nœud une rangée de données sera stockée. Première partie de la clé primaire.
+- **Clé de clustering** : Détermine l'ordre des données à l'intérieur d'une partition. Deuxième partie de la clé primaire 
+- **Table** : Contient des rangées de données. Chaque rangée est identifiée par une clé primaire.
+- **Espace de noms (Keyspace)** : Équivalent d'une base de données dans les systèmes RDBMS.
+2. **Architecture distribuée** :
+- **Nœud** : Une instance de Cassandra.
+- **Cluster** : Un ensemble de nœuds.
+- **Partitionnement** : Cassandra utilise une fonction de hachage pour distribuer les données à travers les nœuds. Détermine sur quel nœud une rangée sera stockée. La fonction de hachage transforme la clé de partition en un token qui détermine le nœud responsable de cette partition.
+- **Réplication** : Les données sont répliquées sur plusieurs nœuds pour assurer la disponibilité et la résilience.
+3. **Stratégie de réplication** :
+- **SimpleStrategy** : Utilisée pour un seul centre de données.
+- **NetworkTopologyStrategy** : Utilisée pour plusieurs centres de données.
+4. **Consistance** :
+- Cassandra offre une consistence éventuelle, ce qui signifie que les lectures peuvent ne pas refléter la dernière écriture.
+- **Niveau de consistence** : Définit combien de nœuds doivent confirmer une lecture ou une écriture.
+5. **Gossip Protocol** : Un protocole de communication entre les nœuds pour découvrir et partager l'état et l'information sur les autres nœuds.
+6. **Index** :
+- **Index secondaire** : Permet de requêter des données sur des colonnes non-clé.
+- **Index matérialisé** : Une table spécialisée qui stocke des données en fonction d'une colonne ou d'un ensemble de colonnes non-clé.
+7. **Allow Filtering** :
+- Force Cassandra à scanner toutes les partitions plutôt que celles identifiées par la clé de partition.
