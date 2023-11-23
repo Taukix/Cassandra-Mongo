@@ -2,7 +2,7 @@
 
 ## Lancement du conteneur Docker
 
-Le fichier `docker-compose.yml` est disponible dans le repo. Une version pour les machines avec peu de RAM est également disponible : `docker-compose-low-ram.yml`.
+Le fichier `docker-compose.yml` est disponible dans le repo.
 
 ```bash
 docker-compose up -d
